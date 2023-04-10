@@ -18,12 +18,13 @@ check_generate:	## Run lintings and verification on endpoints
 	@echo "Verifying the endpoints and config"
 	@docker run \
 		--rm -t \
+		-v $(PWD):/workdir \
 		-v $(PWD)/krakendcfg:/etc/krakend/ \
 		-e FC_ENABLE=1 -e KRAKEND_PORT=8888 \
 		-e FC_SETTINGS=/etc/krakend/settings \
 		-e FC_PARTIALS=/etc/krakend/partials \
 		-e FC_TEMPLATES=/etc/krakend/templates \
-		-e FC_OUT=krakend.yml \
+		-e FC_OUT=/workdir/krakend.yml \
 		devopsfaith/krakend check -dtc krakend.tmpl
 
 .PHONY: gateway-image

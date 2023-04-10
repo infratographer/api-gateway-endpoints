@@ -17,19 +17,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Run verify
-        run: make verify
+      - name: Run check_generate
+        run: make check_generate
 
   build-image:
     name: build-image
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 
+      - name: Checkout
         uses: actions/checkout@v3
 
       - name: Generate krakend configuration
-        run: make generate
-      
+        run: make check_generate
+
       - name: docker-metadata
         id: docker-metadata
         uses: docker/metadata-action@v4
