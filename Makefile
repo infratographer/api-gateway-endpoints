@@ -25,6 +25,7 @@ check_generate:	## Run lintings and verification on endpoints
 		-e FC_PARTIALS=/etc/krakend/partials \
 		-e FC_TEMPLATES=/etc/krakend/templates \
 		-e FC_OUT=/workdir/krakend.yml \
+		$(LOCAL_RUN_ARGS) \
 		devopsfaith/krakend check -dtc krakend.tmpl
 
 .PHONY: gateway-image
