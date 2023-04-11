@@ -2,11 +2,13 @@
 # The intent is to use release tags instead of commit hashes
 FROM ghcr.io/infratographer/porton/porton:latest
 
-# Install the configuration file in the expected path
-COPY krakend.yml /etc/krakend-src/config/krakend.yml
+ARG CONFIG_FILE=/etc/krakend-src/config/krakend.yml
 
-RUN chown -R 1000:1000 /etc/krakend-src/config/krakend.yml
-USER 1000:1000
+# Install the configuration file in the expected path
+COPY --chown=1000:1000 krakend.yml ${CONFIG_FILE}
+
+# required flexible configuration to enable yaml
+ENV FC_OUT=${CONFIG_FILE}
 
 ENTRYPOINT [ "/usr/bin/krakend" ]
 CMD [ "run", "-c", "/etc/krakend-src/config/krakend.yml" ]

@@ -5,7 +5,7 @@ name: your-api-group-name
 port: {{ env "KRAKEND_PORT" }}
 timeout: 3s
 cache_ttl: 3s
-output_encoding: json
+output_encoding: no-op
 plugin:
   pattern: ".so"
   folder: "/opt/krakend/plugins/"
@@ -14,12 +14,6 @@ extra_config:
     "@comment": The health endpoint checks do not show in the logs
     logger_skip_paths:
     - "/__health"
-  plugin/http-server:
-    name:
-    - virtualhost
-    virtualhost:
-      hosts:
-      - api.test.v1
   telemetry/opencensus:
     sample_rate: 100
     reporting_period: 1
@@ -34,10 +28,6 @@ extra_config:
         tag_path: true
         tag_method: true
         tag_statuscode: true
-tls:
-  public_key: "/cert/tls.crt"
-  private_key: "/cert/tls.key"
-endpoints: {{ range $idx, $endpoint := .endpoints.endpoints }}{{if $idx}},{{end}}
-{{ end }}
+endpoints:
 {{ template "_endpoints.tmpl" . }}
 
