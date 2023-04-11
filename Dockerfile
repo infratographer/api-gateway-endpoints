@@ -6,6 +6,7 @@ ARG CONFIG_FILE=/etc/krakend-src/config/krakend.yml
 
 # Install the configuration file in the expected path
 COPY --chown=1000:1000 krakend.yml ${CONFIG_FILE}
+USER 1000:1000
 
 # required flexible configuration to enable yaml
 ENV FC_OUT=${CONFIG_FILE}
