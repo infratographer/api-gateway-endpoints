@@ -19,7 +19,7 @@ help: Makefile ## Print help
 check-generate:	## Run verification on endpoints
 	@echo "Verifying the endpoints and config"
 	@docker run \
-		--rm -t \
+		--rm -t --user root \
 		-v $(PWD):/workdir \
 		-v $(PWD)/krakendcfg:/etc/krakend/ \
 		-e KRAKEND_PORT=${KRAKEND_PORT} \

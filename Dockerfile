@@ -2,6 +2,8 @@
 # The intent is to use release tags instead of commit hashes
 FROM ghcr.io/infratographer/porton/porton:latest
 
+USER root
+
 ARG CONFIG_FILE=/etc/krakend-src/config/krakend.yml
 
 # Install the configuration file in the expected path
