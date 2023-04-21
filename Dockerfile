@@ -3,11 +3,14 @@ FROM ghcr.io/infratographer/porton/porton@sha256:68c8a7f263782dd09903361ff73ca35
 USER root
 
 # Install the configuration file in the expected path
-COPY krakend.tmpl /etc/krakend-src/config/krakend.tmpl
+COPY krakendcfg/krakend.tmpl /etc/krakend-src/config/krakend.tmpl
 
 RUN chown -R 1000:1000 /etc/krakend-src/config/krakend.tmpl
 
 USER 1000:1000
+
+# required flexible configuration to enable yaml
+ENV FC_OUT=/tmp/krakend.yml
 
 ENTRYPOINT [ "/usr/bin/krakend" ]
 CMD [ "run", "-c", "/etc/krakend-src/config/krakend.tmpl" ]
