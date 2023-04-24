@@ -1,5 +1,5 @@
 FROM ghcr.io/infratographer/krakend-endpoints-tool/krakend-endpoints-tool:latest as KET
-FROM ghcr.io/infratographer/porton/porton@sha256:8bf86abdc150c5bd33d1d61a4e3add236eb731b5e417ec5098bafe9c2fa239b8 as PORTON
+FROM ghcr.io/infratographer/porton/porton@sha256:f11778e9aa318913d4e4690a1201a7670bac25e82dfc7f74a3b2e75dfeea8a72 as PORTON
 
 FROM mcr.microsoft.com/vscode/devcontainers/base:bullseye
 
